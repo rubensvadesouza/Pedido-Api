@@ -1,14 +1,12 @@
-﻿using Domain.Command;
+﻿using Domain.Command.Pedido;
 using infra.Model;
 using Infra.Repository;
 using System;
 
-namespace Domain.CommandHandler.Pedidos
+namespace Domain.CommandHandler.Pedido
 {
-    public class PedidoCommandHandler :
-        ICommandHander<AtualizaValorCommand>,
-        ICommandHander<AddPedidoCommand>,
-        ICommandHander<RemovePedidoCommand>
+    public class PedidoCommandHandler : IPedidoCommandHandler
+
     {
         protected PedidoRepository _repository;
 
@@ -25,12 +23,15 @@ namespace Domain.CommandHandler.Pedidos
             await _repository.Update("ID", command.ID, "Valor", command.Valor);
         }
 
-        public async void Handle(AddPedidoCommand command)
+        public async void Handle(AdicionarPedidoCommand command)
         {
             var model = new PedidoModel()
             {
                 ID = command.ID,
-                Description = command.Description,
+
+                Descricao = command.Descricao,
+                CNPJ = command.CNPJ,
+                Empresa = command.Empresa,
                 Status = command.Status,
                 Valor = command.Valor
             };

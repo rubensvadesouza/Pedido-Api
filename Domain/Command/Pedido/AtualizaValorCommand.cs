@@ -1,10 +1,10 @@
-﻿namespace Domain.Command
+﻿namespace Domain.Command.Pedido
 {
     public class AtualizaValorCommand : ICommand
     {
-        public AtualizaValorCommand(string _id, decimal _Valor)
+        public AtualizaValorCommand(string id, decimal valor)
         {
-            ID = _id;
+            ID = id;
             Valor = Valor;
         }
 

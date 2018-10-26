@@ -1,5 +1,4 @@
-﻿using Domain.Handler;
-using Domain.Read.Pedido;
+﻿using Domain.Pedido;
 using Domain.ViewModel;
 using infra.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -11,45 +10,44 @@ namespace item_api.Controllers
     [ApiController]
     public class PedidoController : ControllerBase
     {
-        private readonly PedidoReader _reader;
-        private readonly PedidoDomain _handler;
+        private readonly IPedidoDomain _domain;
 
         public PedidoController()
         {
-            _handler = new PedidoDomain();
-            _reader = new PedidoReader();
+            _domain = new PedidoDomain();
         }
 
         [HttpGet]
         public ActionResult<List<PedidoViewModel>> Get()
         {
-            return _reader.GetAll();
+            return Ok(_domain.Listar());
         }
 
         [HttpGet("{id}")]
         public ActionResult<PedidoViewModel> Get(string id)
         {
-            return _reader.GetById(id);
+            var ret = _domain.ObterPorId(id);
+            return Ok(ret);
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] PedidoModel value)
+        public ActionResult Post([FromBody] PedidoModel model)
         {
-            _handler.AdicionarPedido(value.Description, value.Valor, value.Status);
+            _domain.AdicionarPedido(model.Descricao, model.Empresa, model.CNPJ, model.Valor, model.Status);
             return Ok();
         }
 
         [HttpPatch("{id}/valor")]
         public ActionResult Put(string id, [FromBody] decimal valor)
         {
-            _handler.AtualizarPreco(id, valor);
+            _domain.AtualizarPreco(id, valor);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            _handler.RemoverPedido(id);
+            _domain.RemoverPedido(id);
             return Ok();
         }
     }

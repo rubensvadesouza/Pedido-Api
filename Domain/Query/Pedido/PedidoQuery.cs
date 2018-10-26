@@ -3,13 +3,13 @@ using Infra.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace Domain.Read.Pedido
+namespace Domain.Query.Pedido
 {
-    public class PedidoReader : IPedidoReader
+    public class PedidoQuery : IPedidoQuery
     {
         public PedidoRepository pedidoRepository;
 
-        public PedidoReader()
+        public PedidoQuery()
         {
             var connString = Environment.GetEnvironmentVariable("MongoConnection");
             var dataBase = Environment.GetEnvironmentVariable("MongoDatabase");
@@ -17,7 +17,7 @@ namespace Domain.Read.Pedido
             pedidoRepository = new PedidoRepository(connString, dataBase);
         }
 
-        public List<PedidoViewModel> GetAll()
+        public List<PedidoViewModel> Listar()
         {
             var pedidoModels = pedidoRepository.GetAll().Result;
             var viewModels = new List<PedidoViewModel>();
@@ -30,9 +30,10 @@ namespace Domain.Read.Pedido
             return viewModels;
         }
 
-        public PedidoViewModel GetById(string id)
+        public PedidoViewModel ObterPorId(string id)
         {
-            return pedidoRepository.GetByField("id", id).Result;
+            var ret = pedidoRepository.GetByField("ID", id).Result;
+            return ret;
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿namespace Domain.Command
+﻿namespace Domain.Command.Pedido
 {
     public class RemovePedidoCommand : ICommand
     {
-        public RemovePedidoCommand(string _id)
+        public RemovePedidoCommand(string id)
         {
-            ID = _id;
+            ID = id;
         }
 
         public string ID { get; }

@@ -6,9 +6,9 @@ namespace Domain.ViewModel
     public class PedidoViewModel
     {
         public string ID { get; set; }
-
-        public string Description { get; set; }
-
+        public string Descricao { get; set; }
+        public string CNPJ { get; set; }
+        public string Empresa { get; set; }
         public decimal Valor { get; set; }
 
         public PedidoStatus Status { get; set; }
@@ -17,7 +17,9 @@ namespace Domain.ViewModel
         {
             var viewModel = new PedidoViewModel()
             {
-                Description = d.Description,
+                Descricao = d.Descricao,
+                CNPJ = d.CNPJ,
+                Empresa = d.Empresa,
                 ID = d.ID,
                 Status = d.Status,
                 Valor = d.Valor

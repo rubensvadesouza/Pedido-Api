@@ -8,8 +8,4 @@
     <ProjectReference Include="..\infra\Infra.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Read\" />
-  </ItemGroup>
-
 </Project>
