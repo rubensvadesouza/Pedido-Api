@@ -3,9 +3,9 @@
 namespace Domain.CommandHandler.Pedido
 {
     public interface IPedidoCommandHandler :
-        ICommandHander<AtualizaValorCommand>,
+        ICommandHander<AtualizarValorCommand>,
         ICommandHander<AdicionarPedidoCommand>,
-        ICommandHander<RemovePedidoCommand>
+        ICommandHander<RemoverPedidoCommand>
     {
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Domain.Command.Pedido
 {
-    public class RemovePedidoCommand : ICommand
+    public class RemoverPedidoCommand : ICommand
     {
-        public RemovePedidoCommand(string id)
+        public RemoverPedidoCommand(string id)
         {
             ID = id;
         }

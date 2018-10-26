@@ -18,7 +18,7 @@ namespace Domain.CommandHandler.Pedido
             _repository = new PedidoRepository(connString, dataBase);
         }
 
-        public async void Handle(AtualizaValorCommand command)
+        public async void Handle(AtualizarValorCommand command)
         {
             await _repository.Update("ID", command.ID, "Valor", command.Valor);
         }
@@ -39,7 +39,7 @@ namespace Domain.CommandHandler.Pedido
             await _repository.Insert(model);
         }
 
-        public void Handle(RemovePedidoCommand command)
+        public void Handle(RemoverPedidoCommand command)
         {
             _repository.DeleteByField("ID", command.ID);
         }

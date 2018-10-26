@@ -26,7 +26,7 @@ namespace Domain.Pedido
 
         public void AtualizarPreco(string id, decimal Valor)
         {
-            var command = new AtualizaValorCommand(id, Valor);
+            var command = new AtualizarValorCommand(id, Valor);
             _handler.Handle(command);
         }
 
@@ -42,7 +42,7 @@ namespace Domain.Pedido
 
         public void RemoverPedido(string id)
         {
-            var command = new RemovePedidoCommand(id);
+            var command = new RemoverPedidoCommand(id);
             _handler.Handle(command);
         }
     }

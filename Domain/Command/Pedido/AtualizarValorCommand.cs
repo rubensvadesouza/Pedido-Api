@@ -1,8 +1,8 @@
 ﻿namespace Domain.Command.Pedido
 {
-    public class AtualizaValorCommand : ICommand
+    public class AtualizarValorCommand : ICommand
     {
-        public AtualizaValorCommand(string id, decimal valor)
+        public AtualizarValorCommand(string id, decimal valor)
         {
             ID = id;
             Valor = Valor;
