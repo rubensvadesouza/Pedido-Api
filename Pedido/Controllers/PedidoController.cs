@@ -1,7 +1,7 @@
 ﻿using Domain.Pedido;
 using Domain.ViewModel;
-using infra.Model;
 using Microsoft.AspNetCore.Mvc;
+using Pedido.Request;
 using System.Collections.Generic;
 
 namespace item_api.Controllers
@@ -31,9 +31,9 @@ namespace item_api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] PedidoModel model)
+        public ActionResult Post([FromBody] PedidoRequest request)
         {
-            _domain.AdicionarPedido(model.Descricao, model.Empresa, model.CNPJ, model.Valor, model.Status);
+            _domain.AdicionarPedido(request.Descricao, request.Empresa, request.CNPJ, request.Valor, request.Status);
             return Ok();
         }
 

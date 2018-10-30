@@ -1,4 +1,4 @@
-﻿using infra.Model;
+﻿using Infra.Entity;
 using Infra.Enum;
 
 namespace Domain.ViewModel
@@ -13,16 +13,16 @@ namespace Domain.ViewModel
 
         public PedidoStatus Status { get; set; }
 
-        public static implicit operator PedidoViewModel(PedidoModel d)
+        public static implicit operator PedidoViewModel(PedidoEntity entity)
         {
             var viewModel = new PedidoViewModel()
             {
-                Descricao = d.Descricao,
-                CNPJ = d.CNPJ,
-                Empresa = d.Empresa,
-                ID = d.ID,
-                Status = d.Status,
-                Valor = d.Valor
+                Descricao = entity.Descricao,
+                ID = entity._id,
+                CNPJ = entity.CNPJ,
+                Empresa = entity.Empresa,
+                Status = entity.Status,
+                Valor = entity.Valor
             };
 
             return viewModel;

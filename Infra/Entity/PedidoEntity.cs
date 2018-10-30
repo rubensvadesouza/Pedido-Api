@@ -1,17 +1,15 @@
 ﻿using Infra.Enum;
 using MongoDB.Bson;
 
-namespace infra.Model
+namespace Infra.Entity
 {
-    public class PedidoModel
+    public class PedidoEntity
     {
-        public ObjectId _id { get; set; }
+        public string _id { get; set; }
 
         public string CNPJ { get; set; }
 
         public string Empresa { get; set; }
-
-        public string ID { get; set; }
 
         public string Descricao { get; set; }
 

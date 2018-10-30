@@ -1,5 +1,5 @@
 ﻿using Domain.Command.Pedido;
-using infra.Model;
+using Infra.Entity;
 using Infra.Repository;
 using System;
 
@@ -25,10 +25,8 @@ namespace Domain.CommandHandler.Pedido
 
         public async void Handle(AdicionarPedidoCommand command)
         {
-            var model = new PedidoModel()
+            var model = new PedidoEntity()
             {
-                ID = command.ID,
-
                 Descricao = command.Descricao,
                 CNPJ = command.CNPJ,
                 Empresa = command.Empresa,
