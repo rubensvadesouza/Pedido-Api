@@ -18,7 +18,7 @@ namespace Domain.ViewModel
             var viewModel = new PedidoViewModel()
             {
                 Descricao = entity.Descricao,
-                ID = entity._id,
+                ID = entity._id.ToString(),
                 CNPJ = entity.CNPJ,
                 Empresa = entity.Empresa,
                 Status = entity.Status,

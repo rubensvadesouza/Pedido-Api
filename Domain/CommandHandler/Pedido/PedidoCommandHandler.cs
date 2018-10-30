@@ -27,6 +27,7 @@ namespace Domain.CommandHandler.Pedido
         {
             var model = new PedidoEntity()
             {
+                _id = new MongoDB.Bson.ObjectId(),
                 Descricao = command.Descricao,
                 CNPJ = command.CNPJ,
                 Empresa = command.Empresa,

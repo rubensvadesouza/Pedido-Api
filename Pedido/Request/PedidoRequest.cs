@@ -4,7 +4,6 @@ namespace Pedido.Request
 {
     public class PedidoRequest
     {
-        public string _id { get; set; }
 
         public string CNPJ { get; set; }
 

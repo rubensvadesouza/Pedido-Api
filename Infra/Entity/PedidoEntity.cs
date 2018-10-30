@@ -5,7 +5,7 @@ namespace Infra.Entity
 {
     public class PedidoEntity
     {
-        public string _id { get; set; }
+        public ObjectId _id { get; set; }
 
         public string CNPJ { get; set; }
 

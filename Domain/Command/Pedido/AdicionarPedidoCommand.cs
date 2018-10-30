@@ -1,5 +1,4 @@
 ﻿using Infra.Enum;
-using System;
 
 namespace Domain.Command.Pedido
 {
@@ -7,15 +6,12 @@ namespace Domain.Command.Pedido
     {
         public AdicionarPedidoCommand(string descricao, string cnpj, string empresa, decimal valor, PedidoStatus status)
         {
-            ID = Guid.NewGuid().ToString();
             Descricao = descricao;
             Empresa = empresa;
             CNPJ = cnpj;
             Valor = valor;
             Status = status;
         }
-
-        public string ID { get; set; }
 
         public string Empresa { get; set; }
 
