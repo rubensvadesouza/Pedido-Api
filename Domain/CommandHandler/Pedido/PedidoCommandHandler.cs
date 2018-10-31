@@ -1,6 +1,7 @@
 ﻿using Domain.Command.Pedido;
 using Infra.Entity;
 using Infra.Repository;
+using MongoDB.Bson;
 using System;
 
 namespace Domain.CommandHandler.Pedido
@@ -41,6 +42,11 @@ namespace Domain.CommandHandler.Pedido
         public void Handle(RemoverPedidoCommand command)
         {
             _repository.DeleteByField("ID", command.ID);
+        }
+
+        public void Handle(AtualizarStatusCommand command)
+        {
+            _repository.Update("_id", ObjectId.Parse(command.ID), "Status", (int)command.Status).GetAwaiter().GetResult();
         }
     }
 }

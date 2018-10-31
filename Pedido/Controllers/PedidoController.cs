@@ -1,5 +1,6 @@
 ﻿using Domain.Pedido;
 using Domain.ViewModel;
+using Infra.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Pedido.Request;
 using System.Collections.Generic;
@@ -38,9 +39,16 @@ namespace item_api.Controllers
         }
 
         [HttpPatch("{id}/valor")]
-        public ActionResult Put(string id, [FromBody] decimal valor)
+        public ActionResult PatchValor(string id, [FromBody] decimal valor)
         {
             _domain.AtualizarPreco(id, valor);
+            return Ok();
+        }
+
+        [HttpPatch("{id}/status")]
+        public ActionResult PatchStatus(string id, [FromBody] PedidoStatusRequest status)
+        {
+            _domain.AtualizarStatus(id, status.Status);
             return Ok();
         }
 

@@ -6,8 +6,9 @@ namespace Infra.Enum
 {
     public enum PedidoStatus
     {
+        Rejeitado = -1,
         Indefinido = 0,
-        Aprovado = 1,
-        Rejeitado = 2
+        Aprovado = 1
+
     }
 }

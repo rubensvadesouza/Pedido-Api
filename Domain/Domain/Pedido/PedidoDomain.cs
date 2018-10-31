@@ -30,6 +30,12 @@ namespace Domain.Pedido
             _handler.Handle(command);
         }
 
+        public void AtualizarStatus(string id, PedidoStatus status)
+        {
+            var command = new AtualizarStatusCommand(id, status);
+            _handler.Handle(command);
+        }
+
         public List<PedidoViewModel> Listar()
         {
             return _query.Listar();

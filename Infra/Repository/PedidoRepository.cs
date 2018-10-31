@@ -24,7 +24,7 @@ namespace Infra.Repository
             await _collection.InsertOneAsync(user);
         }
 
-        public async Task<bool> Update(string filterName, string filterValue, string udateFieldName, object updateFieldValue)
+        public async Task<bool> Update(string filterName, object filterValue, string udateFieldName, object updateFieldValue)
         {
             var filter = Builders<PedidoEntity>.Filter.Eq(filterName, filterValue);
             var update = Builders<PedidoEntity>.Update.Set(udateFieldName, updateFieldValue);
