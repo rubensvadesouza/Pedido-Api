@@ -5,9 +5,15 @@ namespace Infra.Entity
 {
     public class RemessaVO
     {
+
+       public RemessaVO()
+        {
+            Id = ObjectId.GenerateNewId();
+        }
+
         public ObjectId Id { get; set; }
         public string Nome { get; set; }
 
-        public List<SacadoVO> Sacados { get; set; } = new List<SacadoVO>();
+        public IList<SacadoVO> Sacados { get; set; } = new List<SacadoVO>();
     }
 }

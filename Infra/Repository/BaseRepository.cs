@@ -17,7 +17,7 @@ namespace Infra.Repository
         {
             _client = new MongoClient(connectionString);
             _database = _client.GetDatabase(dataBase);
-            _collection = _database.GetCollection<T>(nameof(T));
+            _collection = _database.GetCollection<T>(typeof(T).Name);
         }
 
         public async Task Insert(T e)

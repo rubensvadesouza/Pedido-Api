@@ -8,6 +8,11 @@ namespace Domain.Pedido
     {
         protected ICedenteQuery _query;
 
+        public CedenteDomain()
+        {
+            _query = new CedenteQuery();
+        }
+
         public List<CedenteViewModel> Listar()
         {
             return _query.Listar();

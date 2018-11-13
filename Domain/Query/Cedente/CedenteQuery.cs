@@ -1,5 +1,8 @@
 ﻿using Domain.ViewModel;
+using FizzWare.NBuilder;
+using Infra.Entity;
 using Infra.Repository;
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Query.Cedente
@@ -8,9 +11,18 @@ namespace Domain.Query.Cedente
     {
         public CedenteRepository _repo;
 
+        public CedenteQuery()
+        {
+            var connString = Environment.GetEnvironmentVariable("MongoConnection");
+            var dataBase = Environment.GetEnvironmentVariable("MongoDatabase");
+
+            _repo = new CedenteRepository(connString, dataBase);
+        }
+
         public List<CedenteViewModel> Listar()
         {
             var cedentesEntities = _repo.GetAll().Result;
+
             var viewModels = new List<CedenteViewModel>();
 
             foreach (var cedente in cedentesEntities)
@@ -19,6 +31,22 @@ namespace Domain.Query.Cedente
             }
 
             return viewModels;
+        }
+
+        public void CreateRandomCedentes()
+        {
+            var cedente = Builder<CedenteEntity>.CreateNew().Build();
+
+            var remessas = Builder<RemessaVO>.CreateListOfSize(new Random().Next(1, 10)).Build();
+
+            foreach (var remessa in remessas)
+            {
+                remessa.Sacados = Builder<SacadoVO>.CreateListOfSize(new Random().Next(1, 10)).Build();
+            }
+
+            cedente.Remessas = remessas;
+
+            _repo.Insert(cedente).GetAwaiter().GetResult();
         }
     }
 }
