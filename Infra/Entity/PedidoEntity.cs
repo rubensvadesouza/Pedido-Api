@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace Infra.Entity
 {
-    public class PedidoEntity
+    public class PedidoEntity: IEntity
     {
         public ObjectId _id { get; set; }
 

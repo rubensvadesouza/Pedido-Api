@@ -7,7 +7,6 @@ using System;
 namespace Domain.CommandHandler.Pedido
 {
     public class PedidoCommandHandler : IPedidoCommandHandler
-
     {
         protected PedidoRepository _repository;
 
@@ -19,16 +18,16 @@ namespace Domain.CommandHandler.Pedido
             _repository = new PedidoRepository(connString, dataBase);
         }
 
-        public async void Handle(AtualizarValorCommand command)
+        public void Handle(AtualizarValorCommand command)
         {
-            await _repository.Update("ID", command.ID, "Valor", command.Valor);
+            _repository.Update("ID", command.ID, "Valor", command.Valor).GetAwaiter().GetResult();
         }
 
         public async void Handle(AdicionarPedidoCommand command)
         {
             var model = new PedidoEntity()
             {
-                _id = new MongoDB.Bson.ObjectId(),
+                _id = new ObjectId(),
                 Descricao = command.Descricao,
                 CNPJ = command.CNPJ,
                 Empresa = command.Empresa,

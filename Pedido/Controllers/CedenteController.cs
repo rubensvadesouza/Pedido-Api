@@ -1,0 +1,62 @@
+﻿using Domain.Pedido;
+using Domain.ViewModel;
+using Infra.Enum;
+using Microsoft.AspNetCore.Mvc;
+using Pedido.Request;
+using System.Collections.Generic;
+
+namespace item_api.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CedenteController : ControllerBase
+    {
+        private readonly IPedidoDomain _domain;
+
+        public CedenteController()
+        {
+            _domain = new PedidoDomain();
+        }
+
+        [HttpGet]
+        public ActionResult<List<PedidoViewModel>> Get()
+        {
+            return Ok(_domain.Listar());
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<PedidoViewModel> Get(string id)
+        {
+            var ret = _domain.ObterPorId(id);
+            return Ok(ret);
+        }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] PedidoRequest request)
+        {
+            _domain.AdicionarPedido(request.Descricao, request.Empresa, request.CNPJ, request.Valor, request.Status);
+            return Ok();
+        }
+
+        [HttpPatch("{id}/valor")]
+        public ActionResult PatchValor(string id, [FromBody] decimal valor)
+        {
+            _domain.AtualizarPreco(id, valor);
+            return Ok();
+        }
+
+        [HttpPatch("{id}/status")]
+        public ActionResult PatchStatus(string id, [FromBody] PedidoStatusRequest status)
+        {
+            _domain.AtualizarStatus(id, status.Status);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
+        {
+            _domain.RemoverPedido(id);
+            return Ok();
+        }
+    }
+}
